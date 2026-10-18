@@ -154,6 +154,52 @@ article hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
 .pager .next { margin-left: auto; text-align: right; }
 .complete-row { display: flex; align-items: center; gap: 12px; margin-top: 36px; font-family: var(--font-ui); font-size: 14px; color: var(--muted); flex-wrap: wrap; }
 
+/* Diagrams: classes come from course/diagrams/src, coloured from theme tokens */
+figure.dg { margin: 1.8em 0; }
+.dgscroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.dgscroll svg { display: block; width: 100%; min-width: 540px; height: auto; color: var(--ink); }
+figure.dg figcaption { font-family: var(--font-ui); font-size: 14px; line-height: 1.5; color: var(--muted); margin-top: 10px; max-width: 68ch; }
+.dg .t { font: 500 13px var(--font-ui); fill: var(--ink); }
+.dg .b { font-weight: 700; }
+.dg .ts { font: 12px var(--font-ui); fill: var(--muted); }
+.dg .tm { font: 500 12px var(--font-ui); fill: var(--marigold); }
+.dg .ta { font: 600 12px var(--font-ui); fill: var(--accent); }
+.dg .bx { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.dg .bxa { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.dg .bxm { fill: var(--marigold-soft); stroke: var(--marigold); stroke-width: 1.5; }
+.dg .ln { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.dg .lna { stroke: var(--accent); stroke-width: 2; fill: none; }
+.dg .lnm { stroke: var(--marigold); stroke-width: 2; fill: none; }
+.dg .dash { stroke-dasharray: 5 4; }
+.dg .ahf { fill: var(--muted); fill: context-stroke; }
+
+/* Quiz */
+.quiz { margin-top: 2.6em; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 6px 22px 22px; font-family: var(--font-ui); }
+.quiz > h2 { font-family: var(--font-display); font-size: 23px; margin: 0.8em 0 0.2em; letter-spacing: -0.01em; }
+.quiz > p.lead { color: var(--muted); margin: 0 0 1em; font-size: 15px; }
+.q { padding: 16px 0; border-top: 1px solid var(--line); }
+.q-text { font-weight: 600; font-size: 16px; line-height: 1.45; margin: 0 0 10px; }
+.q-num { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 6px; }
+.opts { display: grid; gap: 8px; }
+.opt {
+  display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; text-align: left;
+  font: inherit; font-size: 15px; line-height: 1.45; color: var(--ink);
+  background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; cursor: pointer;
+}
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt:disabled { cursor: default; }
+.opt .letter { font-family: var(--font-mono); font-size: 13px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--line); color: var(--muted); }
+.opt.right { border-color: var(--accent); background: var(--accent-soft); }
+.opt.right .letter { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.opt.wrong { border-color: var(--marigold); background: var(--marigold-soft); }
+.opt.wrong .letter { background: var(--marigold); border-color: var(--marigold); color: var(--surface); }
+.why { margin: 10px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--ink); padding: 10px 12px; border-radius: 8px; background: var(--bg); border-left: 3px solid var(--accent); }
+.why.miss { border-left-color: var(--marigold); }
+.why b { font-weight: 700; }
+.quiz-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+.score { font-weight: 600; font-variant-numeric: tabular-nums; }
+.nav .best { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); }
+
 @media (max-width: 900px) {
   #menuBtn { display: inline-block; }
   .brand span { display: none; }
@@ -188,6 +234,7 @@ article hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
     <div class="page">
       <div class="keytag" id="keytag"><i>Lobby</i><span>Start here</span></div>
       <article id="article"><p>Loading the course…</p></article>
+      <section class="quiz" id="quiz" hidden></section>
       <div class="complete-row" id="completeRow">
         <button class="btn primary" id="doneBtn">Mark this module as done</button>
         <span>Progress is saved in this browser only.</span>
@@ -206,7 +253,7 @@ const FLOORS = [
   { key: "A", name: "Floor 1 · Foundations" },
   { key: "B", name: "Floor 2 · Everyday leverage" },
   { key: "C", name: "Floor 3 · Advanced" },
-  { key: "top", name: "Rooftop & concierge" },
+  { key: "top", name: "Rooftop & extras" },
 ];
 
 const store = {
@@ -242,6 +289,8 @@ function buildNav(current) {
       if (m.id === current) a.setAttribute("aria-current", "page");
       const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = m.room;
       const t = document.createElement("span"); t.textContent = m.short;
+      const best = (m.quiz && m.quiz.length) ? store.get("c101-quiz-" + m.id, -1) : -1;
+      if (best >= 0) { const sb = document.createElement("span"); sb.className = "best"; sb.textContent = " · quiz " + best + "/" + m.quiz.length; t.append(sb); }
       const tick = document.createElement("span"); tick.className = "tick" + (done.has(m.id) ? " on" : "");
       if (!m.countable) tick.style.visibility = "hidden";
       a.append(tag, t, tick);
@@ -315,6 +364,7 @@ function render(id) {
   const s = document.createElement("span"); s.textContent = m.label;
   kt.append(i, s);
 
+  renderQuiz(m);
   const row = document.getElementById("completeRow");
   row.hidden = !m.countable;
   updateDoneBtn(m);
@@ -334,6 +384,69 @@ function render(id) {
   document.title = m.id === "welcome" ? "Claude 101 and Beyond" : m.short + " · Claude 101 and Beyond";
   buildNav(m.id);
   store.set("c101-last", m.id);
+}
+
+
+function renderQuiz(m) {
+  const box = document.getElementById("quiz");
+  box.innerHTML = "";
+  const qs = m.quiz || [];
+  box.hidden = qs.length === 0;
+  if (!qs.length) return;
+  const h = document.createElement("h2");
+  h.textContent = m.id === "capstone" ? "Final quiz" : "Check your understanding";
+  const lead = document.createElement("p");
+  lead.className = "lead";
+  lead.textContent = qs.length + " questions. Pick an answer to see the explanation.";
+  box.append(h, lead);
+  let answered = 0, correct = 0;
+  const foot = document.createElement("div"); foot.className = "quiz-foot";
+  const score = document.createElement("span"); score.className = "score";
+  const retry = document.createElement("button"); retry.className = "btn"; retry.type = "button"; retry.textContent = "Try again";
+  retry.addEventListener("click", () => { renderQuiz(m); box.scrollIntoView({ block: "start" }); });
+  const updateScore = () => {
+    score.textContent = answered < qs.length
+      ? answered + " of " + qs.length + " answered"
+      : "You scored " + correct + " of " + qs.length + (correct === qs.length ? ". Perfect." : ".");
+    retry.hidden = answered < qs.length;
+  };
+  qs.forEach((q, qi) => {
+    const wrap = document.createElement("div"); wrap.className = "q";
+    const p = document.createElement("p"); p.className = "q-text";
+    const n = document.createElement("span"); n.className = "q-num"; n.textContent = (qi + 1) + ".";
+    p.append(n, document.createTextNode(q.q));
+    const opts = document.createElement("div"); opts.className = "opts";
+    const buttons = q.options.map((o, oi) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "opt";
+      const l = document.createElement("span"); l.className = "letter"; l.textContent = "ABCD"[oi];
+      const t = document.createElement("span"); t.textContent = o;
+      b.append(l, t);
+      b.addEventListener("click", () => {
+        buttons.forEach(x => x.disabled = true);
+        const ok = oi === q.answer;
+        buttons[q.answer].classList.add("right");
+        if (!ok) b.classList.add("wrong");
+        const why = document.createElement("p"); why.className = "why" + (ok ? "" : " miss");
+        const lead = document.createElement("b"); lead.textContent = ok ? "Correct. " : "Not quite. The answer is " + "ABCD"[q.answer] + ". ";
+        why.append(lead, document.createTextNode(q.why));
+        wrap.append(why);
+        answered++; if (ok) correct++;
+        updateScore();
+        if (answered === qs.length) {
+          const best = store.get("c101-quiz-" + m.id, -1);
+          if (correct > best) store.set("c101-quiz-" + m.id, correct);
+          buildNav(m.id);
+        }
+      });
+      opts.append(b);
+      return b;
+    });
+    wrap.append(p, opts);
+    box.append(wrap);
+  });
+  foot.append(score, retry);
+  box.append(foot);
+  updateScore();
 }
 
 function updateDoneBtn(m) {

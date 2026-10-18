@@ -25,6 +25,10 @@ Claude doesn't know who you are, what HotelBFF does, what you discussed yesterda
 
 **Most bad answers come from missing context, not from a weak model.** Treat Claude like a brilliant new colleague on their first day: smart, fast, eager, and missing all the background.
 
+![Everything Claude uses for a reply sits in the context window](diagrams/context-window.svg)
+*How a reply is made: Claude reads everything in the context window, writes a reply, and that reply becomes part of the conversation for the next turn. Anything outside the window, like your inbox or yesterday's chats, doesn't exist for Claude unless a feature or you put it inside.*
+
+
 ### 2. It has a training cutoff
 
 Claude's built-in knowledge stops at a certain date. For anything recent (news, prices, new regulations, a competitor's latest launch), turn on **web search** or give it the source material yourself.

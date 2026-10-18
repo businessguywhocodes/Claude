@@ -24,6 +24,10 @@ Claude adds citations to its answer. **Click a couple of them.** Sources can be 
 
 If you connect your work tools (Module 11), Research can also look through your email, documents, and calendar alongside the web.
 
+![Research fans a question out into many searches and combines them into a cited report](diagrams/research-flow.svg)
+*How Research works: Claude plans sub-questions, searches the web and your connected tools in parallel, goes back for more when it finds gaps, then writes a report with citations for you to spot-check.*
+
+
 ## Writing good research questions
 
 Weak: *"Tell me about hotel tech."*

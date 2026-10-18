@@ -56,6 +56,8 @@ Things people build with Artifacts:
 - a **flowchart** of a guest complaint escalation process
 - a simple **dashboard** from a spreadsheet you uploaded
 
+Want to see what real people have built? Browse the **[Showcase](showcase.md)** of public artifacts.
+
 You don't need to know how to code. Describe what you want, try it, then ask for changes: *"Add a button to reset the form"*, *"Make it work on mobile"*, *"Use our brand colours: navy and coral."*
 
 ### Real files

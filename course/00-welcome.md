@@ -17,7 +17,11 @@ This course is for people who have heard a lot about Claude, maybe tried it a fe
 | **C. Advanced** | 10–13 | Use advanced prompting, connect Claude to your tools, delegate multi-step work to agents, and build on the API |
 | **Capstone** | 14 | A 30-day habit plan and a one-page cheat sheet |
 
-There is also a **[Prompt Library](prompt-library.md)** of copy-paste prompts for common personal and work tasks.
+There are also three extras:
+
+- **Quizzes.** Every module ends with a short quiz in the web version. On GitHub, see [quizzes.md](quizzes.md).
+- **[Showcase](showcase.md).** Real artifacts people have built and published, with ideas for remixing them.
+- **[Prompt Library](prompt-library.md).** Copy-paste prompts for common personal and work tasks.
 
 ## How to get the most out of it
 

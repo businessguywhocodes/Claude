@@ -1,12 +1,36 @@
 """Bundle the Markdown modules in course/ into a single self-contained site/index.html."""
 
 import argparse
+import html
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 COURSE = ROOT / "course"
 SITE = ROOT / "site"
+DIAGRAMS = COURSE / "diagrams"
+
+# Light-theme colours for the standalone diagram files GitHub shows. In the web
+# page the same classes are styled from the page's theme tokens instead.
+STANDALONE_STYLE = """<style>
+svg{color:#18211e}
+.t{font:500 13px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#18211e}
+.b{font-weight:700}
+.ts{font:12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#5b6863}
+.tm{font:500 12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#b97a0c}
+.ta{font:600 12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#0e6b66}
+.bx{fill:#ffffff;stroke:#c9d2cd;stroke-width:1.5}
+.bxa{fill:#e2efed;stroke:#0e6b66;stroke-width:1.5}
+.bxm{fill:#f8edd6;stroke:#b97a0c;stroke-width:1.5}
+.ln{stroke:#5b6863;stroke-width:1.5;fill:none}
+.lna{stroke:#0e6b66;stroke-width:2;fill:none}
+.lnm{stroke:#b97a0c;stroke-width:2;fill:none}
+.dash{stroke-dasharray:5 4}
+.ahf{fill:#5b6863;fill:context-stroke}
+</style>"""
+
+FIGURE_RE = re.compile(r"!\[([^\]]*)\]\(diagrams/([\w-]+)\.svg\)\n\*(.+?)\*\n")
 
 # (id, file, room number, floor, short title, label, counts toward progress)
 MODULES = [
@@ -25,14 +49,74 @@ MODULES = [
     ("m12", "12-agents.md", "303", "C", "Agents", "Advanced · Module 12", True),
     ("m13", "13-building-with-the-api.md", "304", "C", "Building with the API", "Advanced · Module 13 (optional)", True),
     ("capstone", "14-capstone.md", "Roof", "top", "Capstone and cheat sheet", "Capstone · Module 14", True),
+    ("showcase", "showcase.md", "Expo", "top", "Showcase: real artifacts", "Extras · Real-world examples", False),
     ("prompts", "prompt-library.md", "Desk", "top", "Prompt library", "Concierge desk · Reference", False),
 ]
+
+
+def build_diagrams():
+    """Write standalone SVGs for GitHub and return {name: inline svg} for the page."""
+    inline = {}
+    for src in sorted((DIAGRAMS / "src").glob("*.svg")):
+        svg = src.read_text(encoding="utf-8").strip()
+        m = re.search(r'viewBox="0 0 (\d+) (\d+)"', svg)
+        w, h = m.group(1), m.group(2)
+        head_end = svg.index(">") + 1
+        standalone = (
+            svg[:head_end] + "\n" + STANDALONE_STYLE
+            + f'\n<rect width="{w}" height="{h}" fill="#f6f7f4"/>' + svg[head_end:] + "\n"
+        )
+        (DIAGRAMS / src.name).write_text(standalone, encoding="utf-8")
+        inline[src.stem] = svg.replace("\n", "")
+    return inline
+
+
+def inline_figures(md, diagrams):
+    def repl(m):
+        alt, name, caption = m.groups()
+        return (
+            f'<figure class="dg"><div class="dgscroll">{diagrams[name]}</div>'
+            f"<figcaption>{html.escape(caption)}</figcaption></figure>\n"
+        )
+    return FIGURE_RE.sub(repl, md)
+
+
+def write_quiz_markdown(quizzes):
+    titles = {mid: short for mid, _, _, _, short, _, _ in MODULES}
+    nums = {mid: file[:2] for mid, file, *_ in MODULES}
+    lines = [
+        "# Module Quizzes",
+        "",
+        "_Generated from `quizzes.json` by `site/build.py`. The web version of the course has these as interactive quizzes._",
+        "",
+    ]
+    for mid, questions in quizzes.items():
+        lines += [f"## Module {int(nums[mid])}: {titles[mid]}", ""]
+        for i, q in enumerate(questions, 1):
+            lines.append(f"**{i}. {q['q']}**")
+            lines.append("")
+            for j, opt in enumerate(q["options"]):
+                lines.append(f"- {'ABCD'[j]}. {opt}")
+            lines += [
+                "",
+                "<details><summary>Answer</summary>",
+                "",
+                f"**{'ABCD'[q['answer']]}.** {q['why']}",
+                "",
+                "</details>",
+                "",
+            ]
+    (COURSE / "quizzes.md").write_text("\n".join(lines), encoding="utf-8")
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--fragment", help="also write a body-only HTML fragment to this path")
     args = parser.parse_args()
+
+    diagrams = build_diagrams()
+    quizzes = json.loads((COURSE / "quizzes.json").read_text(encoding="utf-8"))
+    write_quiz_markdown(quizzes)
 
     data = [
         {
@@ -43,7 +127,8 @@ def main():
             "short": short,
             "label": label,
             "countable": countable,
-            "md": (COURSE / file).read_text(encoding="utf-8"),
+            "md": inline_figures((COURSE / file).read_text(encoding="utf-8"), diagrams),
+            "quiz": quizzes.get(mid, []),
         }
         for mid, file, room, floor, short, label, countable in MODULES
     ]

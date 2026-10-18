@@ -62,6 +62,9 @@ Good uses:
 - a "Board update" style that's tight, numeric, and leads with decisions
 - a "Teach me" style that explains step by step with examples
 
+![Account settings apply everywhere, project context only inside its project](diagrams/context-layers.svg)
+*What each chat inherits: profile preferences and styles reach every chat, a project adds its instructions, files and memory only to its own chats, and projects never see each other's context.*
+
 ## Profile preferences vs. projects vs. memory vs. styles
 
 | Feature | Scope | Use it for |

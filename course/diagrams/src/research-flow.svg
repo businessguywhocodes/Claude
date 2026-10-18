@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 270" role="img" aria-label="Research splits your question into sub-questions, runs many searches in parallel across the web and your connected tools, searches again to fill gaps, and combines the results into a cited report you spot-check.">
+<defs><marker id="ah-rf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ahf"/></marker></defs>
+<rect x="16" y="112" width="100" height="56" rx="10" class="bxm"/>
+<text x="66" y="136" class="t b" text-anchor="middle">Your</text><text x="66" y="154" class="t b" text-anchor="middle">question</text>
+<line x1="116" y1="140" x2="144" y2="140" class="ln" marker-end="url(#ah-rf)"/>
+<rect x="146" y="112" width="110" height="56" rx="10" class="bx"/>
+<text x="201" y="136" class="t b" text-anchor="middle">Plan</text><text x="201" y="154" class="ts" text-anchor="middle">sub-questions</text>
+<rect x="300" y="60" width="140" height="34" rx="7" class="bx"/><text x="370" y="82" class="t" text-anchor="middle">Search: pricing</text>
+<rect x="300" y="104" width="140" height="34" rx="7" class="bx"/><text x="370" y="126" class="t" text-anchor="middle">Search: reviews</text>
+<rect x="300" y="148" width="140" height="34" rx="7" class="bx"/><text x="370" y="170" class="t" text-anchor="middle">Search: rules</text>
+<rect x="300" y="192" width="140" height="34" rx="7" class="bxa"/><text x="370" y="214" class="t" text-anchor="middle">Your Drive, email</text>
+<line x1="256" y1="140" x2="298" y2="77" class="ln" marker-end="url(#ah-rf)"/><line x1="256" y1="140" x2="298" y2="121" class="ln" marker-end="url(#ah-rf)"/><line x1="256" y1="140" x2="298" y2="165" class="ln" marker-end="url(#ah-rf)"/><line x1="256" y1="140" x2="298" y2="209" class="ln" marker-end="url(#ah-rf)"/>
+<path d="M440 77L478 140M440 121L478 140M440 165L478 140M440 209L478 140" class="ln"/>
+<text x="370" y="246" class="ts" text-anchor="middle">run in parallel, pages read in full</text>
+<rect x="480" y="112" width="84" height="56" rx="10" class="bx"/>
+<text x="522" y="136" class="t b" text-anchor="middle">Combine</text><text x="522" y="154" class="ts" text-anchor="middle">and cite</text>
+<path d="M522 112V26H201V110" class="ln dash" marker-end="url(#ah-rf)"/>
+<text x="362" y="44" class="ts" text-anchor="middle">gaps found: search again</text>
+<line x1="564" y1="140" x2="590" y2="140" class="ln" marker-end="url(#ah-rf)"/>
+<rect x="592" y="112" width="74" height="56" rx="10" class="bxa"/>
+<text x="629" y="136" class="t b" text-anchor="middle">Cited</text><text x="629" y="154" class="t b" text-anchor="middle">report</text>
+<text x="629" y="190" class="tm" text-anchor="middle">you click</text>
+<text x="629" y="206" class="tm" text-anchor="middle">2–3 sources</text>
+</svg>

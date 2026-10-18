@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="Profile preferences apply to every chat; each project adds its own instructions, files and memory to the chats inside it, and projects do not share context.">
+<style>
+svg{color:#18211e}
+.t{font:500 13px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#18211e}
+.b{font-weight:700}
+.ts{font:12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#5b6863}
+.tm{font:500 12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#b97a0c}
+.ta{font:600 12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#0e6b66}
+.bx{fill:#ffffff;stroke:#c9d2cd;stroke-width:1.5}
+.bxa{fill:#e2efed;stroke:#0e6b66;stroke-width:1.5}
+.bxm{fill:#f8edd6;stroke:#b97a0c;stroke-width:1.5}
+.ln{stroke:#5b6863;stroke-width:1.5;fill:none}
+.lna{stroke:#0e6b66;stroke-width:2;fill:none}
+.lnm{stroke:#b97a0c;stroke-width:2;fill:none}
+.dash{stroke-dasharray:5 4}
+.ahf{fill:#5b6863;fill:context-stroke}
+</style>
+<rect width="680" height="330" fill="#f6f7f4"/>
+<rect x="20" y="20" width="640" height="290" rx="14" class="bx"/>
+<text x="38" y="46" class="t b">Your account</text>
+<text x="38" y="66" class="ts">Profile preferences and your chosen style apply to every chat below</text>
+<rect x="40" y="84" width="270" height="206" rx="12" class="bxa"/>
+<text x="56" y="108" class="t b">Project: Guest comms</text>
+<text x="56" y="128" class="ts">Instructions, policy files, its own memory</text>
+<rect x="56" y="146" width="238" height="40" rx="8" class="bx"/><text x="70" y="171" class="t">Chat: reply to a complaint</text>
+<rect x="56" y="196" width="238" height="40" rx="8" class="bx"/><text x="70" y="221" class="t">Chat: this week's reviews</text>
+<text x="56" y="268" class="ts">Both chats start knowing the policies</text>
+<rect x="330" y="84" width="196" height="206" rx="12" class="bxm"/>
+<text x="346" y="108" class="t b">Project: Family travel</text>
+<text x="346" y="128" class="ts">Preferences, trip documents</text>
+<rect x="346" y="146" width="164" height="40" rx="8" class="bx"/><text x="360" y="171" class="t">Chat: Lisbon plan</text>
+<rect x="346" y="196" width="164" height="40" rx="8" class="bx"/><text x="360" y="221" class="t">Chat: visa checklist</text>
+<text x="346" y="268" class="ts">Never sees guest policies</text>
+<rect x="544" y="84" width="100" height="206" rx="12" class="bx dash"/>
+<text x="594" y="160" class="t b" text-anchor="middle">Standalone</text>
+<text x="594" y="178" class="t b" text-anchor="middle">chat</text>
+<text x="594" y="204" class="ts" text-anchor="middle">profile and</text>
+<text x="594" y="220" class="ts" text-anchor="middle">general</text>
+<text x="594" y="236" class="ts" text-anchor="middle">memory only</text>
+</svg>

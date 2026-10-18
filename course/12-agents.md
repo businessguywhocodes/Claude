@@ -16,6 +16,10 @@ An agent works in a loop:
 
 Good delegation to an agent looks like good delegation to a person: a clear goal, the context it needs, what "done" means, and what it must not touch.
 
+![An agent loops plan, act, observe, check until the goal is met](diagrams/agent-loop.svg)
+*The agent loop: Claude plans a step, acts with a tool, looks at the result, and checks whether the goal is met, repeating until it is. Sensitive actions pause for your approval, and the result comes back for your review.*
+
+
 ## Claude Code: agents for software
 
 **Claude Code** is Claude working directly in a codebase. It runs in your terminal, in IDEs like VS Code and JetBrains, in the desktop app, and on the web, where it runs in a cloud environment. It can:

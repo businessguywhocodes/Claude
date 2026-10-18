@@ -16,6 +16,10 @@ Imagine handing a task to a sharp new hire who has never been to your office. Wh
 
 You don't need all five every time. A quick question needs none. But the more a task matters, the more of these you should include.
 
+![A brief with five parts, then a draft you steer in the same chat](diagrams/prompt-loop.svg)
+*The prompting loop: a good brief gets a better first draft, and steering in the same chat (instead of starting over) keeps all the context while you converge on the result.*
+
+
 ## Before and after
 
 **Weak prompt**

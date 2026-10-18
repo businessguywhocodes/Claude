@@ -81,6 +81,9 @@ The **description** matters most: it's how Claude decides when to use the skill.
 
 Skills work across the Claude apps, Claude Code, and the API. On team plans they can be shared across the organisation, which is one of the best ways to spread best practice.
 
+![Connectors reach your apps through MCP; skills load only when relevant](diagrams/connectors-skills.svg)
+*Connectors and skills together: Claude calls your apps through MCP connectors to read and act (asking before actions like sending), and pulls in only the skill that matches the task.*
+
 ## Projects vs. skills vs. connectors
 
 | | Gives Claude | Example |

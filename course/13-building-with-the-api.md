@@ -71,6 +71,10 @@ Current models also take an **effort** setting (`output_config={"effort": "low" 
 
 **Tool use (function calling).** You describe functions your system offers, such as `check_availability(date, room_type)` or `create_ticket(...)`. Claude decides when to call them, and your code runs them and returns the results. This is how you connect Claude to your own systems. The SDKs include a **tool runner** that handles the call-execute-repeat loop for you.
 
+![Tool use: Claude asks, your code runs the function, Claude answers](diagrams/api-tool-use.svg)
+*Tool use step by step: Claude never touches your systems directly. It asks your app to run a named function, your code runs it and returns the result, and Claude writes the answer from that result.*
+
+
 **Structured outputs.** Ask for JSON that matches a schema you define, so the output plugs straight into your code.
 
 **Prompt caching.** If many requests share a long, unchanging prefix (a big system prompt, a policy document, a product catalogue), caching it cuts cost and latency considerably. Put stable content first and the variable parts last.

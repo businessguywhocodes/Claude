@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" aria-label="An agent repeats plan, act, observe and check until the goal is met, then reports back; sensitive actions pause for your approval.">
+<style>
+svg{color:#18211e}
+.t{font:500 13px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#18211e}
+.b{font-weight:700}
+.ts{font:12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#5b6863}
+.tm{font:500 12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#b97a0c}
+.ta{font:600 12px "Avenir Next","Segoe UI",system-ui,sans-serif;fill:#0e6b66}
+.bx{fill:#ffffff;stroke:#c9d2cd;stroke-width:1.5}
+.bxa{fill:#e2efed;stroke:#0e6b66;stroke-width:1.5}
+.bxm{fill:#f8edd6;stroke:#b97a0c;stroke-width:1.5}
+.ln{stroke:#5b6863;stroke-width:1.5;fill:none}
+.lna{stroke:#0e6b66;stroke-width:2;fill:none}
+.lnm{stroke:#b97a0c;stroke-width:2;fill:none}
+.dash{stroke-dasharray:5 4}
+.ahf{fill:#5b6863;fill:context-stroke}
+</style>
+<rect width="680" height="290" fill="#f6f7f4"/>
+<defs><marker id="ah-al" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ahf"/></marker></defs>
+<rect x="16" y="60" width="104" height="56" rx="10" class="bxm"/>
+<text x="68" y="84" class="t b" text-anchor="middle">Your goal</text><text x="68" y="102" class="ts" text-anchor="middle">and boundaries</text>
+<line x1="120" y1="88" x2="168" y2="88" class="ln" marker-end="url(#ah-al)"/>
+<rect x="170" y="60" width="120" height="56" rx="10" class="bx"/>
+<text x="230" y="84" class="t b" text-anchor="middle">Plan</text><text x="230" y="102" class="ts" text-anchor="middle">next step</text>
+<line x1="290" y1="88" x2="348" y2="88" class="ln" marker-end="url(#ah-al)"/>
+<text x="319" y="78" class="ts" text-anchor="middle">do</text>
+<rect x="350" y="60" width="120" height="56" rx="10" class="bxa"/>
+<text x="410" y="84" class="t b" text-anchor="middle">Act</text><text x="410" y="102" class="ts" text-anchor="middle">files, browser, apps</text>
+<line x1="410" y1="116" x2="410" y2="198" class="ln" marker-end="url(#ah-al)"/>
+<text x="418" y="162" class="ts">result</text>
+<rect x="350" y="200" width="120" height="56" rx="10" class="bx"/>
+<text x="410" y="224" class="t b" text-anchor="middle">Observe</text><text x="410" y="242" class="ts" text-anchor="middle">what happened?</text>
+<line x1="350" y1="228" x2="292" y2="228" class="ln" marker-end="url(#ah-al)"/>
+<rect x="170" y="200" width="120" height="56" rx="10" class="bx"/>
+<text x="230" y="224" class="t b" text-anchor="middle">Check</text><text x="230" y="242" class="ts" text-anchor="middle">goal met?</text>
+<line x1="230" y1="200" x2="230" y2="118" class="ln" marker-end="url(#ah-al)"/>
+<text x="238" y="162" class="ts">no: adjust</text>
+<line x1="170" y1="228" x2="122" y2="228" class="lna" marker-end="url(#ah-al)"/>
+<text x="146" y="218" class="ts" text-anchor="middle">yes</text>
+<rect x="16" y="200" width="104" height="56" rx="10" class="bxa"/>
+<text x="68" y="224" class="t b" text-anchor="middle">Report</text><text x="68" y="242" class="ts" text-anchor="middle">for your review</text>
+<line x1="470" y1="80" x2="528" y2="80" class="lnm dash" marker-end="url(#ah-al)"/><line x1="530" y1="98" x2="472" y2="98" class="lnm dash" marker-end="url(#ah-al)"/>
+<rect x="530" y="56" width="134" height="64" rx="10" class="bxm"/>
+<text x="597" y="80" class="t b" text-anchor="middle">You approve</text><text x="597" y="100" class="ts" text-anchor="middle">send, pay, delete</text>
+<text x="597" y="146" class="tm" text-anchor="middle">sensitive actions</text>
+<text x="597" y="162" class="tm" text-anchor="middle">pause here</text>
+</svg>

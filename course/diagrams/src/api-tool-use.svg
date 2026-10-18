@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 350" role="img" aria-label="With tool use, Claude asks your app to run a function, your code runs it against your own system, and Claude uses the result to answer.">
+<defs><marker id="ah-api" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ahf"/></marker></defs>
+<rect x="35" y="16" width="150" height="44" rx="10" class="bxm"/><text x="110" y="43" class="t b" text-anchor="middle">Your app</text>
+<rect x="265" y="16" width="150" height="44" rx="10" class="bxa"/><text x="340" y="43" class="t b" text-anchor="middle">Claude API</text>
+<rect x="495" y="16" width="150" height="44" rx="10" class="bx"/><text x="570" y="43" class="t b" text-anchor="middle">Booking system</text>
+<path d="M110 60V336M340 60V336M570 60V336" class="ln dash"/>
+<line x1="110" y1="100" x2="338" y2="100" class="ln" marker-end="url(#ah-api)"/>
+<text x="225" y="90" class="ts" text-anchor="middle">1. question + tool list</text>
+<line x1="340" y1="148" x2="112" y2="148" class="lna" marker-end="url(#ah-api)"/>
+<text x="225" y="138" class="ta" text-anchor="middle">2. tool_use: check_availability</text>
+<line x1="110" y1="196" x2="568" y2="196" class="ln" marker-end="url(#ah-api)"/>
+<text x="455" y="186" class="ts" text-anchor="middle">3. your code runs the query</text>
+<line x1="570" y1="236" x2="112" y2="236" class="ln" marker-end="url(#ah-api)"/>
+<text x="455" y="226" class="ts" text-anchor="middle">"2 deluxe rooms free"</text>
+<line x1="110" y1="280" x2="338" y2="280" class="ln" marker-end="url(#ah-api)"/>
+<text x="225" y="270" class="ts" text-anchor="middle">4. tool_result</text>
+<line x1="340" y1="322" x2="112" y2="322" class="lna" marker-end="url(#ah-api)"/>
+<text x="225" y="312" class="ta" text-anchor="middle">5. answer: "Yes, 2 deluxe rooms"</text>
+</svg>
